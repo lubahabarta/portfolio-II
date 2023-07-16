@@ -21,5 +21,16 @@
 }
 
 html {
-    @apply uppercase scroll-smooth no-scrollbar;
+    @apply uppercase scroll-smooth no-scrollbar overscroll-none overflow-x-hidden;
+}
+
+#intro {
+    background: radial-gradient(rgba(0, 0, 0, 0.5) 8%, transparent 8%);
+    background-position: 0% 0%;
+    background-size: 5vmin 5vmin;
+
+    &::after {
+        content: '';
+        @apply absolute bottom-0 w-full h-8 z-[-10] bg-gradient-to-t from-white to-transparent;
+    }
 }
