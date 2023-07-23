@@ -21,7 +21,8 @@
 }
 
 html {
-    @apply uppercase scroll-smooth no-scrollbar overscroll-none overflow-x-hidden;
+    // @apply uppercase scroll-smooth no-scrollbar overscroll-none overflow-x-hidden;
+    @apply uppercase scroll-smooth overscroll-none overflow-x-hidden;
 }
 
 #intro {
