@@ -1,98 +1,101 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted } from 'vue';
 
-const trigger = ref<null | HTMLDivElement>(null);
-const centeredText = ref<null | HTMLSpanElement>(null);
-const bgContainer = ref<null | HTMLDivElement>(null);
-const topBg = ref<null | HTMLDivElement>(null);
-const bottomBg = ref<null | HTMLDivElement>(null);
+const { scrolled } = defineProps({
+    scrolled: {
+        type: Number,
+        required: true,
+    }
+});
 
-const handleScroll = () => {
-    const windowHeight = window.innerHeight;
-    const frame = windowHeight * 0.5;
+const windowH = ref(0);
 
+const getIntroText = (s: number) => {
     const point = {
-        lubaFadeOutStart: windowHeight * 0.5,
-        lubaFadeOutEnd: windowHeight,
-        devFadeInStart: windowHeight,
-        devFadeInEnd: windowHeight * 1.5,
-        devFadeOutStart: windowHeight * 2,
-        devFadeOutEnd: windowHeight * 2.5,
-        rotateStart: windowHeight * 2.5,
-        rotateEnd: windowHeight * 3.5,
+        lubaFadeOutEnd: windowH.value,
     };
 
-    const scrolled = trigger.value!.getBoundingClientRect().top * -1;
-    let opacity = 1;
-    let text = 'Luba Habarta';
-    let transformBg = 'rotate(0) scale(1)';
-    let transformTop = 'translateY(0)';
-    let transformBottom = 'translateY(0)';
-
-    if (scrolled < point.lubaFadeOutEnd) {
-        text = 'Luba Habarta';
-    } else if (scrolled < point.devFadeOutEnd) {
-        text = 'Junior Developer';
+    if (s < point.lubaFadeOutEnd) {
+        return 'Luba Habarta';
+    } else if (s >= point.lubaFadeOutEnd) {
+        return 'Junior Developer';
     }
+};
 
-    if (scrolled < point.lubaFadeOutStart) {
-        opacity = 1;
-    } else if (scrolled >= point.lubaFadeOutStart && scrolled < point.lubaFadeOutEnd) {
-        const percentage = 1 - (scrolled - point.lubaFadeOutStart) / frame;
-        opacity = percentage;
-    } else if (scrolled >= point.devFadeInStart && scrolled < point.devFadeInEnd) {
-        const percentage = (scrolled - point.devFadeInStart) / frame;
-        opacity = percentage;
-    } else if (scrolled >= point.devFadeOutStart && scrolled < point.devFadeOutEnd) {
-        const percentage = 1 - (scrolled - point.devFadeOutStart) / frame;
-        opacity = percentage;
-    } else if (scrolled >= point.devFadeOutEnd) {
-        opacity = 0;
+const getIntroTextOpacity = (s: number) => {
+    const frame = windowH.value * 0.5;
+    const point = {
+        lubaFadeOutStart: windowH.value * 0.5,
+        lubaFadeOutEnd: windowH.value,
+        devFadeInStart: windowH.value,
+        devFadeInEnd: windowH.value * 1.5,
+        devFadeOutStart: windowH.value * 2,
+        devFadeOutEnd: windowH.value * 2.5,
+    };
+
+    if (s < point.lubaFadeOutStart) {
+        return 1;
+    } else if (s >= point.lubaFadeOutStart && s < point.lubaFadeOutEnd) {
+        const percentage = 1 - (s - point.lubaFadeOutStart) / frame;
+        return percentage;
+    } else if (s >= point.devFadeInStart && s < point.devFadeInEnd) {
+        const percentage = (s - point.devFadeInStart) / frame;
+        return percentage;
+    } else if (s >= point.devFadeOutStart && s < point.devFadeOutEnd) {
+        const percentage = 1 - (s - point.devFadeOutStart) / frame;
+        return percentage;
+    } else if (s >= point.devFadeOutEnd) {
+        return 0;
     }
+};
 
-    if (scrolled < point.rotateStart) {
-        transformBg = 'rotate(0) scale(1)';
-        transformTop = 'translateY(0)';
-        transformBottom = 'translateY(0)';
-    } else if (scrolled >= point.rotateStart && scrolled < point.rotateEnd) {
-        const percentage = (scrolled - point.rotateStart) / (frame * 2);
-        transformBg = `rotate(${90 * percentage}deg) scale(${1 + percentage})`;
-        transformTop = `translateY(-${50 * percentage}%)`;
-        transformBottom = `translateY(${50 * percentage}%)`;
+const getBgTransformStyle = (s: number) => {
+    const frame = windowH.value * 0.5;
+    const point = {
+        rotateStart: windowH.value * 2.5,
+        rotateEnd: windowH.value * 3.5,
+    };
+
+    if (s < point.rotateStart) {
+        return {
+            bg: `rotate(0deg) scale(1)`,
+            top: `translateY(0)`,
+            bottom: `translateY(0)`,
+        };
+    } else if (s >= point.rotateStart && s < point.rotateEnd) {
+        const percentage = (s - point.rotateStart) / (frame * 2);
+        return {
+            bg: `rotate(${90 * percentage}deg) scale(${1 + percentage})`,
+            top: `translateY(-${50 * percentage}%)`,
+            bottom: `translateY(${50 * percentage}%)`,
+        };
     } else {
-        transformBg = 'rotate(90deg) scale(2)';
-        transformTop = 'translateY(-50%)';
-        transformBottom = 'translateY(50%)';
+        return {
+            bg: 'rotate(90deg) scale(2)',
+            top: 'translateY(-55%)',
+            bottom: 'translateY(55%)',
+        };
     }
-
-    centeredText.value!.style.opacity = `${opacity}`;
-    centeredText.value!.innerText = text;
-
-    bgContainer.value!.style.transform = transformBg;
-    topBg.value!.style.transform = transformTop;
-    bottomBg.value!.style.transform = transformBottom;
 };
 
 onMounted(() => {
-    window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
+    windowH.value = window.innerHeight;
 });
 </script>
 
 <template>
     <section id="intro" class="relative h-[350vh] z-10">
-        <div ref="trigger"></div>
-        <div class="flex items-center justify-center sticky top-0 w-full h-[100vh]">
-            <div ref="bgContainer" class="absolute w-full h-full origin-cente z-20 will-change-transform">
-                <div ref="topBg"
-                    class="h-[100vh] w-[200vw] left-[-50%] absolute top-[-50%] bg-gradient-to-r from-white to-gray-300 will-change-transform" />
-                <div ref="bottomBg"
-                    class="h-[100vh] w-[200vw] left-[-50%] absolute bottom-[-50%] bg-gradient-to-l from-white to-gray-300 will-change-transform" />
+        <div class="flex items-center justify-center sticky top-0 w-full h-[100vh] overflow-x-clip">
+            <div class="absolute w-full h-full origin-cente z-20 will-change-transform"
+                :style="{ transform: getBgTransformStyle(scrolled).bg }">
+                <div class="h-[100vh] w-[300vw] left-[-100vw] absolute top-[-50%] bg-gradient-to-r from-white from-20% to-gray-300 to-80% will-change-transform"
+                    :style="{ transform: getBgTransformStyle(scrolled).top }" />
+                <div class="h-[100vh] w-[300vw] left-[-100vw] absolute bottom-[-50%] bg-gradient-to-l from-white from-20% to-gray-300 to-80% will-change-transform"
+                    :style="{ transform: getBgTransformStyle(scrolled).bottom }" />
             </div>
-            <span ref="centeredText" class="z-20 will-change-[opacity] text-[5vw]">Luba Habarta</span>
+            <span class="z-20 will-change-[opacity] text-[5vw]" :style="{ opacity: getIntroTextOpacity(scrolled) }">
+                {{ getIntroText(scrolled) }}
+            </span>
         </div>
     </section>
 </template>
