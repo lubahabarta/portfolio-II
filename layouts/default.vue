@@ -1,5 +1,5 @@
 <template>
-    <svg class="fixed top-0 w-full h-full z-[999] pointer-events-none opacity-30 mix-blend-difference">
+    <svg class="fixed top-0 w-full h-full z-[999] pointer-events-none opacity-50">
         <filter id="noise-filter">
             <feTurbulence type="fractalNoise" baseFrequency="1.3" />
         </filter>

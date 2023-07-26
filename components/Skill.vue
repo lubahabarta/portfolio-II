@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { src, customStyles } = defineProps({
+const { src } = defineProps({
     src: {
         type: String,
         required: true,
@@ -8,15 +8,11 @@ const { src, customStyles } = defineProps({
         type: String,
         required: true,
     },
-    customStyles: {
-        type: String,
-        required: true,
-    }
 });
 </script>
 
 <template>
-    <div class="flex justify-center items-center bg-gray-100 rounded-lg" :class="customStyles">
+    <div class="flex h-[14vh] aspect-square justify-center items-center bg-gray-100 rounded-lg mr-4 sm:mr-[14vh]">
         <img :src="src" :alt="alt" class="w-2/5 h-2/5" />
     </div>
 </template>
