@@ -20,5 +20,6 @@ onMounted(() => {
         <SectionIntro :scrolled="scrolled > 0 ? scrolled : 0" />
         <SectionProjects :scrolled="projectsScrolled > 0 ? projectsScrolled : 0" />
         <SectionSkills />
+        <SectionAboutMe />
     </main>
 </template>
