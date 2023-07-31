@@ -48,26 +48,11 @@ const slider = {
             <div class="relative content-none
                 before:h-full before:w-10 before:absolute before:left-0 before:top-0 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10
                 after:h-full after:w-10 after:absolute after:right-0 after:top-0 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10">
-                <div class="w-full overflow-hidden">
-                    <div class="flex w-[calc((14vh+1rem)*20)] sm:w-[calc((28vh)*20)] animate-slider">
-                        <Skill v-for="item in slider.first" :src="item.src" :alt="item.alt" />
-                        <Skill v-for="item in slider.first" :src="item.src" :alt="item.alt" />
-                    </div>
-                </div>
+                <Slider :items="slider.first" />
 
-                <div class="w-full overflow-hidden mt-4">
-                    <div class="flex w-[calc((14vh+1rem)*20)] sm:w-[calc((28vh)*20)] animate-reverseSlider">
-                        <Skill v-for="item in slider.second" :src="item.src" :alt="item.alt" />
-                        <Skill v-for="item in slider.second" :src="item.src" :alt="item.alt" />
-                    </div>
-                </div>
+                <Slider :items="slider.second" reversed />
 
-                <div class="w-full overflow-hidden mt-4">
-                    <div class="flex w-[calc((14vh+1rem)*20)] sm:w-[calc((28vh)*20)] animate-slider">
-                        <Skill v-for="item in slider.third" :src="item.src" :alt="item.alt" />
-                        <Skill v-for="item in slider.third" :src="item.src" :alt="item.alt" />
-                    </div>
-                </div>
+                <Slider :items="slider.third" />
             </div>
         </div>
         </section>
