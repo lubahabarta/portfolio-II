@@ -66,14 +66,14 @@ const getBgTransformStyle = (s: number) => {
         const percentage = (s - point.rotateStart) / (frame * 2);
         return {
             bg: `rotate(${90 * percentage}deg) scale(${1 + percentage})`,
-            top: `translateY(-${50 * percentage}%)`,
-            bottom: `translateY(${50 * percentage}%)`,
+            top: `translateY(-${50 * percentage}vw)`,
+            bottom: `translateY(${50 * percentage}vw)`,
         };
     } else {
         return {
             bg: 'rotate(90deg) scale(2)',
-            top: 'translateY(-55%)',
-            bottom: 'translateY(55%)',
+            top: 'translateY(-55vw)',
+            bottom: 'translateY(55vw)',
         };
     }
 };
