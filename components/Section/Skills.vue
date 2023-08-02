@@ -40,11 +40,12 @@ const slider = {
 </script>
 
 <template>
-    <section id="skills" class="w-full h-[100vh] my-[10vh] flex justify-center">
-        <div class="w-[80vw] flex flex-col justify-around">
-            <div>
-                asdf
-            </div>
+    <section id="skills" class="w-full h-screen my-[10vh] flex justify-center">
+        <div class="w-[80vw] flex flex-col justify-evenly">
+            <header>
+                <h3 class="font-bold text-[clamp(2rem,8vw,4rem)]">Skills</h3>
+                <p>Technologie se kterými jsem se doposud setkal.</p>
+            </header>
             <div class="relative content-none
                 before:h-full before:w-10 before:absolute before:left-0 before:top-0 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10
                 after:h-full after:w-10 after:absolute after:right-0 after:top-0 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10">

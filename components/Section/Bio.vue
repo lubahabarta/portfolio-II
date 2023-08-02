@@ -16,16 +16,16 @@ const s = (val: number) => {
         <header class="sticky top-0 bg-green-500 h-[20vh]">
             {{ s(scrolled) }}
         </header>
-        <div class="h-[100vh] flex justify-center items-center">
+        <div class="h-screen flex justify-center items-center">
             aaa
         </div>
-        <div class="h-[100vh] flex justify-center items-center">
+        <div class="h-screen flex justify-center items-center">
             aaa
         </div>
-        <div class="h-[100vh] flex justify-center items-center">
+        <div class="h-screen flex justify-center items-center">
             aaa
         </div>
-        <div class="h-[100vh] flex justify-center items-center">
+        <div class="h-screen flex justify-center items-center">
             aaa
         </div>
     </section>

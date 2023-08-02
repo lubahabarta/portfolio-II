@@ -31,17 +31,19 @@ onMounted(() => {
 
 <template>
     <section ref="sectionRef" id="projects" class="h-[400vh] relative">
-        <div class="sticky top-0 h-[100vh] w-full flex flex-col">
-            <header class="h-1/4 w-full border-gray-400 border-b-[1px]">header</header>
+        <div class="sticky top-0 h-screen w-full flex flex-col">
+            <header class="h-1/4 w-full flex items-center border-gray-400 border-b-[1px]">
+                <h3 class="font-bold text-[clamp(3rem,15vw,7rem)]">Projekty</h3>
+            </header>
             <div class="h-3/4 w-full overflow-hidden">
-                <ul ref="listRef" class="h-full w-[430vw] md:w-[calc(30vw+3000px)] flex bg-black"
+                <ul ref="listRef" class="h-full w-[430vw] md:w-[calc(30vw+3000px)] flex bg-black will-change-transform"
                     :style="{ transform: getListPosition(scrolled) }">
                     <li class="w-[30vw]"></li>
-                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px]"></li>
-                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px]"></li>
-                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px]"></li>
-                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px]"></li>
-                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px] border-r-[1px]">
+                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px] hover:cursor-pointer"></li>
+                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px] hover:cursor-pointer"></li>
+                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px] hover:cursor-pointer"></li>
+                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px] hover:cursor-pointer"></li>
+                    <li class="h-full w-[80vw] md:w-[600px] bg-white border-gray-400 border-l-[1px] border-b-[1px] border-r-[1px] hover:cursor-pointer">
                     </li>
                 </ul>
             </div>

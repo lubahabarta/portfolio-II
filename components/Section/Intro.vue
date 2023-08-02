@@ -85,15 +85,15 @@ onMounted(() => {
 
 <template>
     <section id="intro" class="relative h-[350vh] z-10">
-        <div class="flex items-center justify-center sticky top-0 w-full h-[100vh] overflow-x-clip">
+        <div class="flex items-center justify-center sticky top-0 w-full h-screen overflow-x-clip">
             <div class="absolute w-full h-full origin-cente z-20 will-change-transform"
                 :style="{ transform: getBgTransformStyle(scrolled).bg }">
-                <div class="h-[100vh] w-[300vw] left-[-100vw] absolute top-[-50%] bg-gradient-to-r from-white from-20% to-gray-300 to-80% will-change-transform"
+                <div class="h-screen w-[300vw] left-[-100vw] absolute top-[-50%] bg-gradient-to-r from-white from-20% to-gray-300 to-80% will-change-transform"
                     :style="{ transform: getBgTransformStyle(scrolled).top }" />
-                <div class="h-[100vh] w-[300vw] left-[-100vw] absolute bottom-[-50%] bg-gradient-to-l from-white from-20% to-gray-300 to-80% will-change-transform"
+                <div class="h-screen w-[300vw] left-[-100vw] absolute bottom-[-50%] bg-gradient-to-l from-white from-20% to-gray-300 to-80% will-change-transform"
                     :style="{ transform: getBgTransformStyle(scrolled).bottom }" />
             </div>
-            <span class="z-20 will-change-[opacity] text-[5vw]" :style="{ opacity: getIntroTextOpacity(scrolled) }">
+            <span class="z-20 will-change-[opacity] text-[clamp(2rem,8vw,7rem)] font-bold" :style="{ opacity: getIntroTextOpacity(scrolled) }">
                 {{ getIntroText(scrolled) }}
             </span>
         </div>
